@@ -1,0 +1,27 @@
+name: CPU checks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  benchmark:
+    name: Synthetic benchmark (Python ${{ matrix.python }})
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ['3.10', '3.11']
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7
+        with:
+          python-version: ${{ matrix.python }}
+      - run: python -m pip install -r requirements.txt
+      - run: python -m unittest test_held_orientation_relief_v001
+      - run: |
+          mkdir -p outputs
+          python -m experiments.held_orientation_relief_v001 --output outputs/held-relief.json

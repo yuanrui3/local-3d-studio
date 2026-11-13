@@ -1,0 +1,135 @@
+{
+  "schema_version": 1,
+  "purpose": "Official default TripoSR control and local extraction assets. This is not a pose-aware multiview backend.",
+  "license_limitations": "License labels identify official model/source notices, not a grant for underlying datasets, downloaded reference media or the subject's likeness. Keep research and all reference processing local; retain notices for any permitted redistribution. No source media, weights, caches or environments belong in Git.",
+  "assets": [
+    {
+      "id": "triposr-config",
+      "repo": "stabilityai/TripoSR",
+      "revision": "5b521936b01fbe1890f6f9baed0254ab6351c04a",
+      "file": "config.yaml",
+      "destination": "models/triposr/5b521936b01fbe1890f6f9baed0254ab6351c04a/config.yaml",
+      "url": "https://huggingface.co/stabilityai/TripoSR/resolve/5b521936b01fbe1890f6f9baed0254ab6351c04a/config.yaml",
+      "sha256": "74ca708ce086bf68e97709ea6b3d91f14717921c04691e84043f0eb8fcc68e62",
+      "size_bytes": 987,
+      "checksum_source": "SHA256 computed from official pinned resolve URL; HF Git blob fa3e59a701f02679bd1dca02fbaf97306174d291; verified 2026-11-08 UTC.",
+      "license": {
+        "model_license": "MIT (official model-card metadata)",
+        "code_license": "MIT",
+        "model_notice": "https://huggingface.co/stabilityai/TripoSR/blob/5b521936b01fbe1890f6f9baed0254ab6351c04a/README.md",
+        "code_notice": "https://github.com/VAST-AI-Research/TripoSR/blob/107cefdc244c39106fa830359024f6a2f1c78871/LICENSE",
+        "training_data": "Objaverse; constituent assets retain their own terms."
+      }
+    },
+    {
+      "id": "triposr-model",
+      "repo": "stabilityai/TripoSR",
+      "revision": "5b521936b01fbe1890f6f9baed0254ab6351c04a",
+      "file": "model.ckpt",
+      "destination": "models/triposr/5b521936b01fbe1890f6f9baed0254ab6351c04a/model.ckpt",
+      "url": "https://huggingface.co/stabilityai/TripoSR/resolve/5b521936b01fbe1890f6f9baed0254ab6351c04a/model.ckpt",
+      "sha256": "429e2c6b22a0923967459de24d67f05962b235f79cde6b032aa7ed2ffcd970ee",
+      "size_bytes": 1677246742,
+      "checksum_source": "Official HF LFS SHA256/size: https://huggingface.co/api/models/stabilityai/TripoSR/revision/5b521936b01fbe1890f6f9baed0254ab6351c04a?blobs=true",
+      "license": {
+        "model_license": "MIT (official model-card metadata)",
+        "code_license": "MIT",
+        "model_notice": "https://huggingface.co/stabilityai/TripoSR/blob/5b521936b01fbe1890f6f9baed0254ab6351c04a/README.md",
+        "code_notice": "https://github.com/VAST-AI-Research/TripoSR/blob/107cefdc244c39106fa830359024f6a2f1c78871/LICENSE",
+        "training_data": "Objaverse; constituent assets retain their own terms."
+      }
+    },
+    {
+      "id": "dino-config",
+      "repo": "facebook/dino-vitb16",
+      "revision": "f205d5d8e640a89a2b8ef0369670dfc37cc07fc2",
+      "file": "config.json",
+      "destination": "models/dino-vitb16/f205d5d8e640a89a2b8ef0369670dfc37cc07fc2/config.json",
+      "url": "https://huggingface.co/facebook/dino-vitb16/resolve/f205d5d8e640a89a2b8ef0369670dfc37cc07fc2/config.json",
+      "sha256": "b87c0270b97db085fd82cf114a761fd0f62ae7914fbd407c752a2260646b689c",
+      "size_bytes": 454,
+      "checksum_source": "SHA256 computed from official pinned resolve URL; HF Git blob 77374d76174bf4b940cc485b61568ff27fcbbc0d; verified 2026-11-08 UTC.",
+      "license": {
+        "model_license": "Apache-2.0 (official model-card metadata)",
+        "source_notice": "https://huggingface.co/facebook/dino-vitb16/blob/f205d5d8e640a89a2b8ef0369670dfc37cc07fc2/README.md",
+        "training_data": "ImageNet-1k; dataset terms remain separate. Only configuration is downloaded; TripoSR checkpoint contains its trained encoder."
+      }
+    },
+    {
+      "id": "u2net-human-seg",
+      "file": "u2net_human_seg.onnx",
+      "destination": ".cache/rembg/u2net_human_seg.onnx",
+      "url": "https://github.com/danielgatis/rembg/releases/download/v0.0.0/u2net_human_seg.onnx",
+      "sha256": "01eb6a29a5c4d8edb30b56adad9bb3a2a0535338e480724a213e0acfd2d1c73c",
+      "md5": "c09ddc2e0104f800e3e1bb4652583d1f",
+      "size_bytes": 175997641,
+      "checksum_source": "Official rembg v2.0.63 u2net_human_seg session MD5; SHA256 computed from matching official release bytes on 2026-11-08 UTC: https://github.com/danielgatis/rembg/blob/v2.0.63/rembg/sessions/u2net_human_seg.py",
+      "license": {
+        "source_license": "U-2-Net source Apache-2.0; rembg wrapper MIT",
+        "source_notice": "https://github.com/xuebinqin/U-2-Net/blob/master/LICENSE",
+        "wrapper_notice": "https://github.com/danielgatis/rembg/blob/v2.0.63/LICENSE.txt",
+        "model_notice": "https://github.com/xuebinqin/U-2-Net#human-segmentation",
+        "limitations": "The wrapper/source licenses do not independently establish rights to training images, reference media or likeness."
+      }
+    },
+    {
+      "id": "deeplabv3",
+      "file": "deeplabv3_resnet50_coco-cd0a2569.pth",
+      "destination": "models/segmentation/deeplabv3_resnet50_coco-cd0a2569.pth",
+      "url": "https://download.pytorch.org/models/deeplabv3_resnet50_coco-cd0a2569.pth",
+      "sha256": "cd0a25694c4a0f7106b38f4938bf90a874f2f241cc410b8f63c7024399538f06",
+      "checksum_source": "Full SHA256 preserved from the handoff fetch_models.py; verified against official download bytes on every fetch.",
+      "license": {
+        "code_license": "BSD-3-Clause",
+        "model_license": "Consult official pretrained-model and training-dataset terms; source-code license alone is not a weight/dataset license.",
+        "source_notice": "https://github.com/pytorch/vision/blob/v0.18.0/LICENSE",
+        "model_notice": "https://pytorch.org/vision/0.18/models.html",
+        "training_data": "COCO; dataset and original image terms remain separate."
+      }
+    },
+    {
+      "id": "maskrcnn",
+      "file": "maskrcnn_resnet50_fpn_v2_coco-73cbd019.pth",
+      "destination": "models/segmentation/maskrcnn_resnet50_fpn_v2_coco-73cbd019.pth",
+      "url": "https://download.pytorch.org/models/maskrcnn_resnet50_fpn_v2_coco-73cbd019.pth",
+      "sha256": "73cbd0190fcbe3ba339921fbce2c3a0b6bb9126c9a133c85e43a2a8e060a109e",
+      "checksum_source": "Full SHA256 preserved from the handoff fetch_models.py; verified against official download bytes on every fetch.",
+      "license": {
+        "code_license": "BSD-3-Clause",
+        "model_license": "Consult official pretrained-model and training-dataset terms; source-code license alone is not a weight/dataset license.",
+        "source_notice": "https://github.com/pytorch/vision/blob/v0.18.0/LICENSE",
+        "model_notice": "https://pytorch.org/vision/0.18/models.html",
+        "training_data": "COCO; dataset and original image terms remain separate."
+      }
+    },
+    {
+      "id": "keypointrcnn",
+      "file": "keypointrcnn_resnet50_fpn_coco-fc266e95.pth",
+      "destination": "models/segmentation/keypointrcnn_resnet50_fpn_coco-fc266e95.pth",
+      "url": "https://download.pytorch.org/models/keypointrcnn_resnet50_fpn_coco-fc266e95.pth",
+      "sha256": "fc266e953d2b302cdcbb9ae66f71f6b0d4649928bf02dc573961e361e4918926",
+      "checksum_source": "Full SHA256 preserved from the handoff fetch_models.py; verified against official download bytes on every fetch.",
+      "license": {
+        "code_license": "BSD-3-Clause",
+        "model_license": "Consult official pretrained-model and training-dataset terms; source-code license alone is not a weight/dataset license.",
+        "source_notice": "https://github.com/pytorch/vision/blob/v0.18.0/LICENSE",
+        "model_notice": "https://pytorch.org/vision/0.18/models.html",
+        "training_data": "COCO; dataset and original image terms remain separate."
+      }
+    },
+    {
+      "id": "sam-vit-b",
+      "file": "sam_vit_b_01ec64.pth",
+      "destination": "models/segmentation/sam_vit_b_01ec64.pth",
+      "url": "https://dl.fbaipublicfiles.com/segment_anything/sam_vit_b_01ec64.pth",
+      "sha256": "ec2df62732614e57411cdcf32a23ffdf28910380d03139ee0f4fcbe91eb8c912",
+      "checksum_source": "Full SHA256 preserved from the handoff fetch_models.py; verified against official download bytes on every fetch.",
+      "license": {
+        "model_license": "Apache-2.0; official SAM README states model and code are licensed under Apache 2.0",
+        "source_notice": "https://github.com/facebookresearch/segment-anything/blob/dca509fe793f601edb92606367a655c15ac00fdf/LICENSE",
+        "model_notice": "https://github.com/facebookresearch/segment-anything/blob/dca509fe793f601edb92606367a655c15ac00fdf/README.md",
+        "training_data": "SA-1B terms are separate; no training dataset is downloaded."
+      }
+    }
+  ]
+}

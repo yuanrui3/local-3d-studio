@@ -1,0 +1,25 @@
+{
+  "repositories": [
+    {
+      "path": "vendor/TripoSR",
+      "url": "https://github.com/VAST-AI-Research/TripoSR.git",
+      "commit": "107cefdc244c39106fa830359024f6a2f1c78871",
+      "group": "core",
+      "sparse_paths": [
+        "/tsr/",
+        "/LICENSE"
+      ]
+    },
+    {
+      "path": "vendor/segment-anything",
+      "url": "https://github.com/facebookresearch/segment-anything.git",
+      "commit": "dca509fe793f601edb92606367a655c15ac00fdf",
+      "group": "core",
+      "sparse_paths": [
+        "/segment_anything/",
+        "/LICENSE"
+      ]
+    }
+  ],
+  "weights": "Excluded. Download separately with fetch_models.py."
+}
