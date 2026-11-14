@@ -2,7 +2,17 @@
 
 Local 3D reconstruction from clothed photos. Generate a vertex-colored GLB from a photo you can use, inspect it in a browser, and run a synthetic benchmark that tests when shading supports a claim about surface geometry.
 
-[Run the CPU benchmark](#run-the-cpu-benchmark) · [Reconstruct a photo](docs/photo-reconstruction.md) · [Contribute](CONTRIBUTING.md)
+[View the real-person demo](#real-person-demo) · [Run the CPU benchmark](#run-the-cpu-benchmark) · [Reconstruct a photo](docs/photo-reconstruction.md) · [Contribute](CONTRIBUTING.md)
+
+## Real-person demo
+
+![A licensed photo of a clothed adult beside two renders of the reconstructed mesh separated by a 90-degree rotation](docs/assets/real-person-demo.jpg)
+
+The local pipeline reconstructed this mesh from one photograph. The rotated view shows how the model estimates surfaces the photo only partly shows.
+
+[Open the 3D demo](https://yuanrui3.github.io/local-3d-studio/viewer.html?model=docs/assets/real-person-demo.glb) · [Download the GLB](docs/assets/real-person-demo.glb) · [Photo credit, license, and reproduction steps](docs/real-person-demo.md)
+
+To use the viewer locally, run `python -m http.server 8000 --bind 127.0.0.1` from the repository root and open the [local demo viewer](http://127.0.0.1:8000/viewer.html?model=docs/assets/real-person-demo.glb). The included GLB needs no checkpoints.
 
 ## Run the CPU benchmark
 
@@ -43,4 +53,4 @@ Reproducible setup reports, CPU-friendly fixtures, and improvements to camera, m
 
 ## License
 
-The project’s original code and documentation are available under the [MIT License](LICENSE). [Third-party notices](THIRD_PARTY_NOTICES.md) cover upstream code, weights, and the bundled viewer. This release contains synthetic fixtures and code. Bring photos you have permission to use and download optional models under their upstream terms.
+The project’s original code and documentation are available under the [MIT License](LICENSE). [Third-party notices](THIRD_PARTY_NOTICES.md) cover upstream code, weights, and the bundled viewer. The [real-person demo](docs/real-person-demo.md) documents its photo and mesh terms separately. Bring photos you have permission to use and download optional models under their upstream terms.

@@ -1,0 +1,52 @@
+name: Publish 3D demo
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'viewer.html'
+      - 'docs/assets/real-person-demo.glb'
+      - '.github/workflows/demo-pages.yml'
+      - 'vendor/web/model-viewer.min.js'
+      - 'vendor/web/LICENSE-*'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6
+      - name: Stage the viewer and public assets
+        run: |
+          mkdir -p _site/docs/assets _site/vendor/web
+          cp viewer.html _site/
+          cp docs/assets/real-person-demo.glb _site/docs/assets/
+          cp vendor/web/model-viewer.min.js vendor/web/LICENSE-* _site/vendor/web/
+          cat > _site/index.html <<'HTML'
+          <!doctype html>
+          <html lang="en">
+          <meta charset="utf-8">
+          <title>Local 3D Studio demo</title>
+          <meta http-equiv="refresh" content="0; url=viewer.html?model=docs/assets/real-person-demo.glb">
+          <a href="viewer.html?model=docs/assets/real-person-demo.glb">Open the Local 3D Studio demo</a>
+          </html>
+          HTML
+      - uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5
+        with:
+          path: _site
+      - name: Deploy demo
+        id: deploy
+        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5

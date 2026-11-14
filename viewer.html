@@ -128,6 +128,7 @@
 
     .sidebar h2 { margin: 0 0 7px; font-size: .95rem; }
     #model-name { overflow-wrap: anywhere; }
+    #demo-details { display: inline-block; margin-top: 7px; color: #264638; font-size: .86rem; }
     .presets button { min-width: 62px; }
     .hint { padding-top: 20px; border-top: 1px solid var(--border); }
 
@@ -148,6 +149,7 @@
         <p class="intro">Preview a reconstructed mesh in your browser.</p>
       </div>
       <div class="actions">
+        <button type="button" id="open-demo" disabled>Load real-person demo</button>
         <button type="button" class="open" id="open-file">Open GLB</button>
         <input type="file" id="file" accept=".glb,model/gltf-binary" hidden>
       </div>
@@ -170,6 +172,7 @@
         <div>
           <h2>Model</h2>
           <p id="model-name" role="status" aria-live="polite">No model loaded</p>
+          <a href="https://github.com/yuanrui3/local-3d-studio/blob/main/docs/real-person-demo.md" id="demo-details" hidden>Photo credit and demo details</a>
         </div>
         <div>
           <h2>Camera</h2>
@@ -189,12 +192,16 @@
     const viewer = document.querySelector("#viewer");
     const file = document.querySelector("#file");
     const open = document.querySelector("#open-file");
+    const openDemo = document.querySelector("#open-demo");
+    const demoDetails = document.querySelector("#demo-details");
     const modelName = document.querySelector("#model-name");
     const message = document.querySelector("#message");
     const title = document.querySelector("#message-title");
     const detail = document.querySelector("#message-detail");
     const presets = document.querySelectorAll("[data-orbit]");
     const defaultModel = "outputs/reconstruction/model.glb";
+    const demoModel = "docs/assets/real-person-demo.glb";
+    const demoUrl = new URL(demoModel, location.href);
     let objectUrl;
     let currentName;
 
@@ -208,23 +215,31 @@
       for (const button of presets) button.disabled = !enabled;
     }
 
-    function load(source, name) {
+    function load(source, name, isDemo = false) {
+      if (viewer.src === source && message.hidden) return;
       currentName = name;
+      demoDetails.hidden = !isDemo;
       setControls(false);
       modelName.textContent = "Loading " + name;
       showMessage("Loading model", name);
       viewer.src = source;
     }
 
-    function serverModelPath() {
-      const model = new URLSearchParams(location.search).get("model") || defaultModel;
+    function loadServerModel(model) {
       const url = new URL(model, location.href);
       if (url.origin !== location.origin || !url.pathname.toLowerCase().endsWith(".glb")) {
         throw new Error("Use a .glb path served by the same local server.");
       }
-      return { url: url.href, name: decodeURIComponent(url.pathname.split("/").pop()) };
+      const isDemo = url.pathname === demoUrl.pathname;
+      const name = isDemo ? "Real-person reconstruction" : decodeURIComponent(url.pathname.split("/").pop());
+      load(url.href, name, isDemo);
+      if (objectUrl) {
+        URL.revokeObjectURL(objectUrl);
+        objectUrl = undefined;
+      }
     }
 
+    openDemo.addEventListener("click", () => loadServerModel(demoModel));
     open.addEventListener("click", () => file.click());
     file.addEventListener("change", () => {
       const selected = file.files[0];
@@ -253,7 +268,7 @@
         showMessage("WebGL unavailable", "Reload the page or try a browser with hardware acceleration.");
         return;
       }
-      showMessage("Model unavailable", "Open a local .glb file or check the model path on the server.");
+      showMessage("Model unavailable", "Load the included demo, open a local .glb file, or verify the model path.");
     });
 
     for (const button of presets) {
@@ -266,8 +281,8 @@
 
     try {
       await import("./vendor/web/model-viewer.min.js");
-      const source = serverModelPath();
-      load(source.url, source.name);
+      openDemo.disabled = false;
+      loadServerModel(new URLSearchParams(location.search).get("model") || defaultModel);
     } catch (error) {
       showMessage("Viewer could not start", error.message);
     }

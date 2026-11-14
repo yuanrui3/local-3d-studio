@@ -14,3 +14,5 @@ The root MIT license applies to this project's original code and documentation. 
 | [U²-Net human segmentation](https://github.com/danielgatis/rembg/releases/tag/v0.0.0) | Downloaded foreground extraction model | See [U²-Net](https://github.com/xuebinqin/U-2-Net) and the checkpoint distributor for applicable terms |
 
 The `vendor/sources.json` and `weights-manifest.json` manifests identify the exact upstream revisions and assets supported by the download commands. Downloaded upstream software and weights live in ignored local directories.
+
+The [real-person demo](docs/real-person-demo.md) identifies the CC0 source photograph and the changes used to produce the preview and mesh.
